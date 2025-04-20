@@ -35,15 +35,14 @@ namespace ConsoleApp1
         public static int[] DivisorNum(int num)
         {
             List<int> numbers = new List<int>();
-            numbers.Add(1);
+            numbers.Add(1); // 1과 자기자신을 저장
             numbers.Add(num);
-
 
             for (int i = 2; i < num; i++)
             {
                 if (num % i == 0)
                 {
-                    if (!numbers.Contains(i))
+                    if (!numbers.Contains(i)) // 중복이 없도록
                     {
                         numbers.Add(i);
                         numbers.Add(num / i);
@@ -52,8 +51,8 @@ namespace ConsoleApp1
                 }
             }
 
-            int[] result = numbers.ToArray();
-            Array.Sort(result);
+            int[] result = numbers.ToArray(); // 배열로 변경하어
+            Array.Sort(result); // 정렬
             return result;
         }
         /// <summary>
@@ -64,15 +63,15 @@ namespace ConsoleApp1
         /// <returns></returns>
         public static int MaxMeasure(int[] num1, int[] num2)
         {
-            int maxNum = 0;
+            int maxNum = 0; // 최대 공약수를 선언
 
             for (int i = 0; i < num1.Length; i++)
             {
                 for (int j = 0; j < num2.Length; j++)
                 {
-                    if (num1[i] == num2[j])
+                    if (num1[i] == num2[j]) // 두 배열에 공통으로 존재하는 약수 중
                     {
-                        maxNum = Math.Max(num1[i], maxNum);
+                        maxNum = Math.Max(num1[i], maxNum); // 가장 큰 수
                         continue;
                     }
                     else
