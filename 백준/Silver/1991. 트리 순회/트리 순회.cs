@@ -41,7 +41,7 @@ namespace ConsoleStudy
     class Node<T>
     {
         public T node; // 현재 노드 데이터
-        public Node<T> rootNode; // 부모 노드 노드
+        public Node<T> parentNode; // 부모 노드 노드
         public Node<T> leftNode; // 왼쪽 자식 노드
         public Node<T> rightNode; // 오른쪽 자식 노드
 
@@ -58,7 +58,7 @@ namespace ConsoleStudy
         public Node(T nowNode, T rootN, T leftN, T rightN)
         {
             this.node = nowNode;
-            this.rootNode = new Node<T>(rootN);
+            this.parentNode = new Node<T>(rootN);
             this.leftNode = new Node<T>(leftN);
             this.rightNode = new Node<T>(rightN);
         }
@@ -102,7 +102,7 @@ namespace ConsoleStudy
                 if (Equals(nowNode.leftNode.node, insertNode.node))
                 {
                     nowNode.leftNode = insertNode;
-                    insertNode.rootNode = nowNode;
+                    insertNode.parentNode = nowNode;
                     return insertNode;
                 }
             }
@@ -112,7 +112,7 @@ namespace ConsoleStudy
                 if (Equals(nowNode.rightNode.node, insertNode.node))
                 {
                     nowNode.rightNode = insertNode;
-                    insertNode.rootNode = nowNode;
+                    insertNode.parentNode = nowNode;
                     return insertNode;
                 }
             }
