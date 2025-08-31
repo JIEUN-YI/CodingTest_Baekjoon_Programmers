@@ -41,7 +41,7 @@ namespace ConsoleStudy
     class Node<T>
     {
         public T node; // 현재 노드 데이터
-        public Node<T> rootNode; // 뿌리 노드 노드
+        public Node<T> rootNode; // 부모 노드 노드
         public Node<T> leftNode; // 왼쪽 자식 노드
         public Node<T> rightNode; // 오른쪽 자식 노드
 
