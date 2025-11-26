@@ -1,49 +1,33 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Solution {
     public int solution(int[] array) {
-                    Dictionary<int, int> dic = new Dictionary<int, int>();
-            for (int i = 0; i < array.Length; i++)
+                    // 키 = array의 값, 값 = 같은 수 의 개수
+            Dictionary<int, int> dic = new Dictionary<int, int>();
+
+            foreach (int item in array)
             {
-                int countNum = 0;
-                for (int j = 0; j < array.Length; j++)
+                if (dic.ContainsKey(item))
                 {
-                    if (!dic.ContainsKey(array[i])) // 탐색해서 저장하지 않은 값만
-                    {
-                        if (array[i] == array[j])
-                        {
-                            countNum++;
-                        }
-                        else continue;
-                    }
-                    else break;
+                    dic[item] += 1;
                 }
-                if(!dic.ContainsKey(array[i]))
+                else
                 {
-                    dic.Add(array[i], countNum);
+                    dic.Add(item, 1);
                 }
             }
-            int maxNum = 0;
-            int key = 0;
+
+            int maxNum = dic.Values.Max(); // 값의 최대값 찾기
+
             int count = 0;
-            foreach(int i in dic.Values)
+            foreach (int i in dic.Values)
             {
-                maxNum = Math.Max(maxNum, i);
+                if(i == maxNum) { count++; }
             }
-            foreach(int i in dic.Keys)
-            {
-                dic.TryGetValue(i, out int value);
-                if ( value == maxNum)
-                {
-                    key = i;
-                    count++;
-                }
-            }
-            if(count > 1)
-            {
-                return -1;
-            }
-            return key;
+
+            if (count == 1) { return dic.FirstOrDefault(x => x.Value == maxNum).Key; }
+            else { return -1; }
     }
 }
