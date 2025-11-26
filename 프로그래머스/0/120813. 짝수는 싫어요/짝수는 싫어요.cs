@@ -2,24 +2,11 @@ using System;
 
 public class Solution {
     public int[] solution(int n) {
-        int count = 0;
-        for(int i = 1; i <= n; i++)
+    // 홀수 배열을 생성
+    int[] result = new int[(n+1)/2];
+        for(int i = 0; i < result.Length ; i++)
         {
-         if (i % 2 != 0)
-            {
-               count++;
-            }
-        else continue;
-        }
-    int[] result = new int[count];
-        for(int i = 0, j = 1 ; i < count ; j++)
-        {
-        if (j % 2 != 0)
-         {
-            result[i] = j;
-            i++;
-         }
-        else continue;
+            result[i]= 1 + i * 2;
         }
         return result;
     }
