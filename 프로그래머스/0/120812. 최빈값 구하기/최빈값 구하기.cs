@@ -1,49 +1,26 @@
 using System;
-using System.Collections.Generic;
+using System.Linq;
 
 public class Solution {
     public int solution(int[] array) {
-                    Dictionary<int, int> dic = new Dictionary<int, int>();
-            for (int i = 0; i < array.Length; i++)
+            int[] find = new int[array.Max() + 1];
+
+            foreach(int i in array)
             {
-                int countNum = 0;
-                for (int j = 0; j < array.Length; j++)
-                {
-                    if (!dic.ContainsKey(array[i])) // 탐색해서 저장하지 않은 값만
-                    {
-                        if (array[i] == array[j])
-                        {
-                            countNum++;
-                        }
-                        else continue;
-                    }
-                    else break;
-                }
-                if(!dic.ContainsKey(array[i]))
-                {
-                    dic.Add(array[i], countNum);
-                }
+                find[i] += 1;
             }
-            int maxNum = 0;
-            int key = 0;
+
+            int maxCount = find.Max();
             int count = 0;
-            foreach(int i in dic.Values)
+            foreach(int num in find)
             {
-                maxNum = Math.Max(maxNum, i);
-            }
-            foreach(int i in dic.Keys)
-            {
-                dic.TryGetValue(i, out int value);
-                if ( value == maxNum)
+                if(num == maxCount)
                 {
-                    key = i;
                     count++;
                 }
             }
-            if(count > 1)
-            {
-                return -1;
-            }
-            return key;
+            
+            if(count == 1) { return Array.IndexOf(find, maxCount); }
+            else { return -1; }
     }
 }
