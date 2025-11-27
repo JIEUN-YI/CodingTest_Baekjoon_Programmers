@@ -16,7 +16,6 @@ public class Solution {
         if (n >= 1)
         {
             result += n / 1;
-           n = n % 1;
         }
 
         return result;
