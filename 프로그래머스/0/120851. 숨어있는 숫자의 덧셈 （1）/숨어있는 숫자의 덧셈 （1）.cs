@@ -3,14 +3,17 @@ using System.Text.RegularExpressions;
 
 public class Solution {
     public int solution(string my_string) { 
-            string arr = Regex.Replace(my_string, @"[^0-9]","");
-            char[] answer = arr.ToCharArray();
-            int result = 0;
-            for(int i = 0; i < answer.Length; i++)
+           
+            int sum = 0;
+            foreach(char a in my_string)
             {
-                result += (int)char.GetNumericValue(answer[i]);
-
+                // char 가 유니코드 숫자인지 판별
+                if (Char.IsNumber(a))
+                {
+                    // GetNumericValue : 숫자 형식의 유니코드 문자를 숫자로 변환
+                    sum += (int)Char.GetNumericValue(a);
+                }
             }
-            return result;
+            return sum;
     }
 }
