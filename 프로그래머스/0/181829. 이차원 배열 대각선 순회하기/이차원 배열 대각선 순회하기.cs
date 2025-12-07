@@ -3,13 +3,13 @@ using System;
 public class Solution {
     public int solution(int[,] board, int k) {
             int result = 0;
-            for(int i = 0;i< board.GetLength(0); i++)
+            for(int y = 0; y < board.GetLength(0); y++)
             {
-                for(int j = 0;j< board.GetLength(1); j++)
+                for(int x = 0; x < board.GetLength(1); x++)
                 {
-                    if (i + j <= k)
+                    if (y + x <= k)
                     {
-                        result += board[i, j];
+                        result += board[y, x];
                     }
                 }
             }
