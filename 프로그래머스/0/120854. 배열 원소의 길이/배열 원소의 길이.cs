@@ -2,12 +2,14 @@ using System;
 
 public class Solution {
     public int[] solution(string[] strlist) {
-        int[] answer = new int[strlist.Length];
-        for(int i = 0;i < strlist.Length;i++)
-        {
-            char[] ex = strlist[i].ToCharArray();
-            answer[i] = ex.Length;
-        }
-        return answer;
-        }
+            int[] answer = new int[strlist.Length];
+            int index = 0;
+            while(index < strlist.Length)
+            {
+                answer[index] = strlist[index].Length;
+                index++;
+            }
+
+            return answer;
+    }
 }
