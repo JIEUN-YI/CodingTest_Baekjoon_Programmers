@@ -3,31 +3,28 @@ using System.Collections.Generic;
 
 public class Solution {
     public string solution(string s) {
-            // 문자를 문자열 배열로 만들기
-            char[] spells = s.ToCharArray();
-            Array.Sort(spells); // 오름차순으로 정렬
-            List<char> answer = new List<char>(spells.Length);
-            for(int i = 0; i < spells.Length; i++)
+           Dictionary<char, int> dic = new Dictionary<char, int>(s.Length);
+            foreach (char c in s)
             {
-                int count = 0;
-                for (int j = 0; j < spells.Length; j++)
+                if (dic.ContainsKey(c))
                 {
-
-                    if(spells[i] == spells[j])
-                    {
-                        count++;
-                    }
-                    else
-                    {
-                        continue;
-                    }
+                    dic[c]++;
                 }
-                if (count == 1)
+                else
                 {
-                    answer.Add(spells[i]);
+                    dic.Add(c, 1);
                 }
             }
-            string result = new string(answer.ToArray());
-            return result;
+            List<char> list = new List<char>();
+            foreach (char c in dic.Keys)
+            {
+                if (dic[c] == 1)
+                {
+                    list.Add(c);
+                }
+            }
+                    list.Sort();
+            string answer = new string(list.ToArray());
+            return answer;
     }
 }
