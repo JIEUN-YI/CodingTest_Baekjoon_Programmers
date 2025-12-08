@@ -1,10 +1,10 @@
 # [level 0] 진료 순서 정하기 - 120835 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120835) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120835?language=csharp) 
 
 ### 성능 요약
 
-메모리: 31.3 MB, 시간: 6.04 ms
+메모리: 31.4 MB, 시간: 3.79 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 04월 21일 19:18:27
+2025년 12월 08일 22:18:46
 
 ### 문제 설명
 
