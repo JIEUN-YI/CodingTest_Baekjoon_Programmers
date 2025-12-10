@@ -1,20 +1,26 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Solution {
     public int[] solution(int[] emergency) {
-            int[] order = new int[emergency.Length];
-            for (int i = 0; i < emergency.Length; i++)
+            Dictionary<int, int> ranking = new Dictionary<int, int>(emergency.Length);
+            int[] values = emergency.OrderByDescending(x => x).ToArray();
+
+            for(int rank = 0; rank < values.Length;rank++)
             {
-                order[i] = emergency[i];
+                ranking.Add(values[rank], rank + 1);
             }
 
-            Array.Sort(order, (x, y)=> y.CompareTo(x));
-
-            int[] answer = new int[order.Length];
-            for(int i = 0; i < order.Length; i++)
+            int[] answer = new int[emergency.Length];
+            int index = 0;
+            foreach(int now in emergency)
             {
-                answer[i] = Array.IndexOf(order, emergency[i]) + 1;
+                answer[index] = ranking[now];
+                index++;
             }
+
+
             return answer;
     }
 }
