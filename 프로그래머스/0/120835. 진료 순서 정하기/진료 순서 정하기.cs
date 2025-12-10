@@ -8,8 +8,7 @@ public class Solution {
                 order[i] = emergency[i];
             }
 
-            Array.Sort(order);
-            Array.Reverse(order);
+            Array.Sort(order, (x, y)=> y.CompareTo(x));
 
             int[] answer = new int[order.Length];
             for(int i = 0; i < order.Length; i++)
