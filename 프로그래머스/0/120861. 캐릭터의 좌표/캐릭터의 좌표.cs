@@ -1,38 +1,56 @@
 using System;
+using System.Collections.Generic;
+
+    public class Pos
+    {
+        public int x;
+        public int y;
+        public Pos(int y, int x)
+        {
+            this.x = x;
+            this.y = y;
+        }
+
+        public void Move(string key)
+        {
+            switch (key)
+            {
+                case "up":
+                    y++;
+                    break;
+                case "down":
+                    y--;
+                    break;
+                case "left":
+                    x--;
+                    break;
+                case "right":
+                    x++;
+                    break;
+            }
+        }
+        public void Clmap(int sizeX, int sizeY)
+        {
+            x = Math.Clamp(x, -sizeX, sizeX);
+            y = Math.Clamp(y, -sizeY, sizeY);
+        }
+     }
 
 public class Solution {
     public int[] solution(string[] keyinput, int[] board) {
-             int sizeX = board[0] / 2; // x의 사이즈
-            int sizeY = board[1] / 2; // y의 사이즈
+ int sizeX = board[0] / 2; // x의 사이즈
+int sizeY = board[1] / 2; // y의 사이즈
 
-            int x = 0; // 오른쪽 +1 / 왼쪽 -1
-            int y = 0; // 위쪽 +1 / 아랫쪽 -1
-            foreach (string key in keyinput)
-            {
-                switch (key)
-                {
-                    case "up":
-                        y++;
-                        if (y > sizeY) { y = Math.Min(y, sizeY); }
-                        break;
-                    case "down":
-                       y--;
-                        if (y < -sizeY) { y = Math.Max(y, -sizeY); }
-                        break;
-                    case "left":
-                        x--; 
-                        if (x < -sizeX) { x = Math.Max(x, -sizeX); }
-                        break;
-                    case "right":
-                        x++;
-                        if (x > sizeX) { x = Math.Min(x, sizeX); }
-                        break;
-                }
-            }
+Pos nowPos = new Pos(0, 0);
 
-            int[] answer = new int[2];
-            answer[0] = x;
-            answer[1] = y;
-            return answer;
+foreach (string key in keyinput)
+{
+    // 캐릭터의 이동에 집중
+    nowPos.Move(key);
+    nowPos.Clmap(sizeX, sizeY);
+
+}
+
+return new int[] { nowPos.x, nowPos.y };
     }
 }
