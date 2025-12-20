@@ -7,7 +7,7 @@ public class Solution {
 
             for(int i = 0; i < ints.Length; i++)
             {
-                ints[i] = (int)input[i] - 48;
+                ints[i] = input[i] - 48;
             }
             Array.Sort(ints);
             Array.Reverse(ints);
