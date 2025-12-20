@@ -11,6 +11,7 @@ public class Solution {
                     {
                         result += board[y, x];
                     }
+                    else{break;}
                 }
             }
             return result;
