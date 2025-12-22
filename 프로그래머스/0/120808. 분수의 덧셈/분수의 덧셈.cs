@@ -13,7 +13,7 @@ public class Solution {
         
         return answer;
     }
-    public static int Getgcd(int num1, int num2)//두 수의 최소공약수를 구하는 함수
+    public static int Getgcd(int num1, int num2)//두 수의 최대공약수를 구하는 함수
 {
     // 두 수의 크기를 비교
     if (num1 < num2) //num1의 수가 작은 경우 변경
