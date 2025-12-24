@@ -4,33 +4,30 @@ using System.Linq;
 
 public class Solution {
     public int solution(int[] ingredient) {
-            int[] recipe = { 1, 3, 2, 1 };
+
+            List<int> makingBurgers = new List<int>(ingredient.Length);
+            int answer = 0;
             int count = 0;
-            Stack<int> stack = new Stack<int>();
-            foreach (int i in ingredient)
+            for (int i = 0; i < ingredient.Length; i++)
             {
-                stack.Push(i);
-                if (stack.Count >= 4)
+                makingBurgers.Add(ingredient[i]);
+                count++;
+                if (count > 3)
                 {
-                    bool isHambuger = true;
-                    for (int ing = 0; ing < 4; ing++)
+                    if (makingBurgers[count - 1] == 1
+                        && makingBurgers[count - 2] == 3
+                        && makingBurgers[count - 3] == 2
+                        && makingBurgers[count - 4] == 1)
                     {
-                        if (recipe[ing] != stack.ElementAt(ing))
-                        {
-                            isHambuger = false;
-                            break;
-                        }
-                    }
-                    if (isHambuger)
-                    {
-                        for (int index = 0; index < 4; index++)
-                        {
-                            stack.Pop();
-                        }
-                        count++;
+                        makingBurgers.RemoveAt(makingBurgers.Count - 1); 
+                        makingBurgers.RemoveAt(makingBurgers.Count - 1); 
+                        makingBurgers.RemoveAt(makingBurgers.Count - 1); 
+                        makingBurgers.RemoveAt(makingBurgers.Count - 1);
+                        answer++;
+                        count -= 4;
                     }
                 }
             }
-            return count;
+            return answer;
     }
 }
