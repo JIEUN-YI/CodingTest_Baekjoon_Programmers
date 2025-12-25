@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 public class Solution {
     public int solution(int[] ingredient) {
-
             List<int> makingBurgers = new List<int>(ingredient.Length);
             int answer = 0;
             int count = 0;
@@ -19,10 +17,7 @@ public class Solution {
                         && makingBurgers[count - 3] == 2
                         && makingBurgers[count - 4] == 1)
                     {
-                        makingBurgers.RemoveAt(makingBurgers.Count - 1); 
-                        makingBurgers.RemoveAt(makingBurgers.Count - 1); 
-                        makingBurgers.RemoveAt(makingBurgers.Count - 1); 
-                        makingBurgers.RemoveAt(makingBurgers.Count - 1);
+                        makingBurgers.RemoveRange(count - 4, 4);
                         answer++;
                         count -= 4;
                     }
