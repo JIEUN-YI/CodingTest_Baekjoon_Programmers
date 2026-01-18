@@ -6,9 +6,9 @@ public class Solution {
 
             for (int index = 2; index < n + 1; index++)
             {
-                fibonacci[index] = fibonacci[index - 1] % 1234567 + fibonacci[index - 2] % 1234567;
+                fibonacci[index] = (fibonacci[index - 1] + fibonacci[index - 2]) % 1234567;
             }
 
-            return fibonacci[fibonacci.Length - 1]% 1234567;
+            return fibonacci[n];
     }
 }
