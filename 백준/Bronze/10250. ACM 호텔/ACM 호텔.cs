@@ -16,29 +16,22 @@ namespace ConsoleStudy
                 int.TryParse(input[0], out int H); // 층수
                 int.TryParse(input[1], out int W); // 방수
                 int.TryParse(input[2], out int N); // 몇번째 손님
-                for (int x = 0; x < W; x++)
+
+                int floor = 0; // 손님의 층
+                int roomNum = 0; // 손님의 방
+                if (N % H == 0)
                 {
-                    for (int y = 0; y < H; y++)
-                    {
-                        N--;
-                        if (N == 0)
-                        {
-                            if (x + 1 < 10)
-                            {
-                                sb.Append(y + 1);
-                                sb.Append(0);
-                                sb.Append(x + 1);
-                            }
-                            else
-                            {
-                                sb.Append(y + 1);
-                                sb.Append(x + 1);
-                            }
-                            break;
-                        }
-                    }
+                    floor = H;
+                    roomNum = N / H;
                 }
-                sb.AppendLine();
+                else
+                {
+                    floor = N % H;
+                    roomNum = N / H + 1;
+                }
+                if (roomNum < 10) { sb.AppendLine(floor + "0" + roomNum); }
+                else { sb.AppendLine(floor.ToString() + roomNum.ToString()); }
+
                 testCase--;
             }
             Console.WriteLine(sb.ToString());
