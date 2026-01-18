@@ -17,18 +17,8 @@ namespace ConsoleStudy
                 int.TryParse(input[1], out int W); // 방수
                 int.TryParse(input[2], out int N); // 몇번째 손님
 
-                int floor = 0; // 손님의 층
-                int roomNum = 0; // 손님의 방
-                if (N % H == 0)
-                {
-                    floor = H;
-                    roomNum = N / H;
-                }
-                else
-                {
-                    floor = N % H;
-                    roomNum = N / H + 1;
-                }
+                int floor = (N - 1) % H + 1; 
+                int roomNum = (N - 1) / H + 1;
                 if (roomNum < 10) { sb.AppendLine(floor + "0" + roomNum); }
                 else { sb.AppendLine(floor.ToString() + roomNum.ToString()); }
 
