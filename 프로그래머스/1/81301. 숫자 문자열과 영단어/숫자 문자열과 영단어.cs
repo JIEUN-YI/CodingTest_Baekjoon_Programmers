@@ -1,22 +1,19 @@
 using System;
-using System.Collections.Generic;
 
 public class Solution {
     public int solution(string s) {
-                    Dictionary<string, string> map = new Dictionary<string, string>(10);
-            map.Add("zero", "0"); map.Add("one", "1"); map.Add("two", "2"); map.Add("three", "3");
-            map.Add("four","4"); map.Add("five", "5"); map.Add("six", "6"); map.Add("seven", "7");
-            map.Add("eight","8"); map.Add("nine", "9");
-
-            foreach(string num in map.Keys)
+                    string[] changes = new string[]
             {
-                if (s.Contains(num))
+                "zero", "one", "two", "three", "four",
+                "five", "six", "seven", "eight", "nine"
+            };
+            for(int index = 0; index < changes.Length; index++)
+            {
+                if (s.Contains(changes[index]))
                 {
-                   s = s.Replace(num, map[num]);
+                    s = s.Replace(changes[index], index.ToString());
                 }
             }
-            int.TryParse(s, out int result);
-            Console.WriteLine(result);
-            return result;
+            return int.Parse(s);
     }
 }
