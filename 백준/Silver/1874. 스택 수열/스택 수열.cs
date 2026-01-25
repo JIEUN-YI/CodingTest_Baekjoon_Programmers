@@ -1,14 +1,13 @@
 using System.Text;
 
-namespace ConsoleStudy
+namespace Solution
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
             StreamReader sr = new StreamReader(Console.OpenStandardInput());
             int.TryParse(sr.ReadLine(), out int N);
-            bool isCheck = true; // 제작 가능 여부 확인
             Stack<int> stack = new Stack<int>();
             StringBuilder sb = new StringBuilder();
 
@@ -25,54 +24,28 @@ namespace ConsoleStudy
             // 주어진 수를 돌면서
             foreach (int num in find)
             {
-                // 반복
-                while (count <= N + 1)
+                // 목표 수 까지 push 반복
+                while (count <= num)
                 {
-                    // 주어진 수가 입력하는 수보다 크거나 같을 때
-                    if (num >= count)
-                    {
-                        stack.Push(count);
-                        sb.AppendLine("+");
-                        count++;
-                        continue;
-                    }
-                    else
-                    {
-                        // 스택 용량 파악
-                        if (stack.Count != 0)
-                        {
-                            // 두 수가 같으면 => 종료
-                            if (stack.Peek() == num)
-                            {
-                                stack.Pop();
-                                sb.AppendLine("-");
-                                break;
-                            }
-                            // 스택 값이 크면 => 그대로 반복
-                            else if (stack.Peek() > num)
-                            {
-                                stack.Pop();
-                                sb.AppendLine("-");
-                                continue;
-                            }
-                            // 그 외 => 수열 제작 불가 => 종료
-                            else
-                            {
-                                isCheck = false;
-                                break;
-                            }
-                        }
-                        else // 용량이 없다면 제작 불가
-                        {
-                            isCheck = false;
-                            break;
-                        }
-                    }
+                    stack.Push(count);
+                    sb.AppendLine("+");
+                    count++;
                 }
-                if (!isCheck) { sb.Clear(); sb.AppendLine("NO"); break; }
+                if (stack.Peek() != num)
+                {
+                    sb.Clear();
+                    sb.AppendLine("NO");
+                    break;
+                }
+                else
+                {
+                    stack.Pop();
+                    sb.AppendLine("-");
+                    continue;
+                }
+
             }
             Console.WriteLine(sb.ToString());
         }
     }
-
 }
